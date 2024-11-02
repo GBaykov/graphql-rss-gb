@@ -3,6 +3,7 @@ import { MemberType, MemberTypeIdEnum } from '../types/memberType.js';
 import { parseResolveInfo } from 'graphql-parse-resolve-info';
 import { UserType } from '../types/user.js';
 import { UUIDType } from '../types/uuid.js';
+import { PostType } from '../types/post.js';
 
 export type UserIncludetFields = {
   profile?: boolean;
@@ -73,6 +74,25 @@ export const Query = new GraphQLObjectType({
       },
       resolve: async (parent, { id }, context) => {
         return context.prisma.user.findUnique({ where: { id } });
+      },
+    },
+    posts: {
+      type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(PostType))),
+      resolve: async (parent, args, context) => {
+        const posts = await context.prisma.post.findMany();
+        posts.forEach((post) => {
+          context.loaders.postLoader.prime(post.id, post);
+        });
+        return posts;
+      },
+    },
+    post: {
+      type: PostType,
+      args: {
+        id: { type: new GraphQLNonNull(UUIDType) },
+      },
+      resolve: async (parent, { id }, context) => {
+        return context.prisma.post.findUnique({ where: { id } });
       },
     },
   },
