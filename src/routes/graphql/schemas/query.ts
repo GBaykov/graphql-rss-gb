@@ -1,5 +1,6 @@
 import { GraphQLList, GraphQLNonNull, GraphQLObjectType } from 'graphql';
 import { MemberType, MemberTypeIdEnum } from '../types/memberType.js';
+import { parseResolveInfo } from 'graphql-parse-resolve-info';
 
 export const Query = new GraphQLObjectType({
   name: 'RootQueryType',
