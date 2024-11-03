@@ -1,19 +1,13 @@
-import { GraphQLList, GraphQLNonNull, GraphQLObjectType } from 'graphql';
-import { MemberType, MemberTypeIdEnum } from '../types/memberType.js';
+import { GraphQLObjectType, GraphQLList, GraphQLNonNull } from 'graphql';
+import { UserType } from './user.js';
+import { PostType } from './post.js';
+import { ProfileType } from './profile.js';
+import { MemberType } from './memberType.js';
+import { UUIDType } from './uuid.js';
+import { MemberTypeIdEnum } from './memberType.js';
 import { parseResolveInfo } from 'graphql-parse-resolve-info';
-import { UserType } from '../types/user.js';
-import { UUIDType } from '../types/uuid.js';
-import { PostType } from '../types/post.js';
-import { ProfileType } from '../types/profile.js';
 
-export type UserIncludetFields = {
-  profile?: boolean;
-  posts?: boolean;
-  userSubscribedTo?: boolean;
-  subscribedToUser?: boolean;
-};
-
-export const Query = new GraphQLObjectType({
+export const RootQueryType = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
     memberTypes: {
@@ -47,7 +41,7 @@ export const Query = new GraphQLObjectType({
 
         const fields = parsedInfo.fieldsByTypeName.User;
 
-        const include: UserIncludetFields = {};
+        const include: any = {};
         if (fields['profile']) {
           include.profile = true;
         }

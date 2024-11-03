@@ -1,9 +1,9 @@
 import {
-  GraphQLEnumType,
+  GraphQLObjectType,
+  GraphQLNonNull,
   GraphQLFloat,
   GraphQLInt,
-  GraphQLNonNull,
-  GraphQLObjectType,
+  GraphQLEnumType,
 } from 'graphql';
 
 export const MemberTypeIdEnum = new GraphQLEnumType({

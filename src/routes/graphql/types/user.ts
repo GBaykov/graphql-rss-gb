@@ -1,9 +1,9 @@
 import {
+  GraphQLObjectType,
+  GraphQLNonNull,
+  GraphQLString,
   GraphQLFloat,
   GraphQLList,
-  GraphQLNonNull,
-  GraphQLObjectType,
-  GraphQLString,
 } from 'graphql';
 import { UUIDType } from './uuid.js';
 import { ProfileType } from './profile.js';

@@ -1,13 +1,14 @@
 import {
-  GraphQLBoolean,
-  GraphQLFloat,
   GraphQLInputObjectType,
-  GraphQLInt,
   GraphQLNonNull,
   GraphQLString,
+  GraphQLFloat,
+  GraphQLBoolean,
+  GraphQLInt,
 } from 'graphql';
-import { MemberTypeIdEnum } from './memberType.js';
 import { UUIDType } from './uuid.js';
+import { MemberTypeIdEnum } from './memberType.js';
+
 
 export const ChangeUserInputType = new GraphQLInputObjectType({
   name: 'ChangeUserInput',
